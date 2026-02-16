@@ -1,0 +1,34 @@
+{
+    "employees": [
+        {
+            "firstName": "John",
+            "lastName": "Doe",
+            "age": 30,
+            "department": "Sales"
+        },
+        {
+            "firstName": "Jane",
+            "lastName": "Smith",
+            "age": 25,
+            "department": "Marketing"
+        },
+        {
+            "firstName": "Michael",
+            "lastName": "Johnson",
+            "age": 35,
+            "department": "IT"
+        },
+        {
+            "firstName": "Emily",
+            "lastName": "Davis",
+            "age": 28,
+            "department": "HR"
+        },
+        {
+            "firstName": "David",
+            "lastName": "Wilson",
+            "age": 40,
+            "department": "Finance"
+        }
+    ]
+}

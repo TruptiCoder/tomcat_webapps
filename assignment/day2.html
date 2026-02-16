@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      * {
+        font-family: consolas;
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+      }
+
+      form {
+        width: 600px;
+        background-color: whitesmoke;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        margin: 2rem auto;
+        border-radius: 0.5rem;
+        padding: 2rem;
+      }
+
+      form div {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        padding: 0.5rem 0;
+      }
+
+      input {
+        flex-grow: 2;
+        height: 2rem;
+        border: 1px solid black;
+        border-radius: 0.2rem;
+        padding: .2rem 1rem;
+      }
+
+      form button {
+        padding: 0.5rem 1rem;
+        background-color: #33cf36;
+        border: none;
+        border-radius: 0.2rem;
+        font-weight: bold;
+        color: white;
+        font-size: 1.1rem;
+        transition: all .3s ease-in-out;
+      }
+
+      form button:hover {
+        background-color: #28a92a;
+      }
+
+      table {
+        border-collapse: collapse;
+      }
+
+      table, tr, th, td {
+        margin: auto;
+        border-inline: 1px solid black;
+      }
+
+      td, th {
+        width: fit-content;
+        padding: .25rem 1rem;
+        text-align: center;
+      }
+
+      h3 {
+        text-align: center;
+        margin-bottom: 2rem;
+        position: relative;
+      }
+
+      h3::after {
+        content: "";
+        width: 10rem;
+        height: 2px;
+        color: black;
+        background-color: blueviolet;
+        position: absolute;
+        top: calc(50% + 1rem);
+        left: 50%;
+        translate: -50% -50%;
+        border-radius: 1rem;
+      }
+
+      .del {
+        color: white;
+        background-color: crimson;
+        padding: 0.2rem 1rem;
+        border-radius: .1rem;
+        border: 1px solid black;
+      }
+
+    </style>
+  </head>
+  <body>
+    <h1>Time: <span style="cursor: pointer;" id="time"
+        onclick="setInterval(() => {
+          this.innerHTML = new Date().toLocaleTimeString();
+        }, 1000)">
+        click here
+        </span>
+    </h1>
+
+    <form onsubmit="handleSubmit(event)">
+      <h2>Registration Form</h2>
+      <div>
+        <label for="id">Id:</label>
+        <input type="text" name="id" id="id" required />
+      </div>
+
+      <div>
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name" required />
+      </div>
+
+      <div>
+        <label for="city">City:</label>
+        <input type="text" name="city" id="city" required />
+      </div>
+
+      <div>
+        <label for="phone">Phone no:</label>
+        <input
+          type="text"
+          name="phone"
+          id="phone"
+          minlength="10"
+          maxlength="10"
+          pattern="[0-9]{10}"
+          required
+        />
+      </div>
+
+      <button type="submit">Add Employee</button>
+    </form>
+
+    <table>
+      <h3>Employee List</h3>
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>City</th>
+          <th>Phone no.</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody"></tbody>
+    </table>
+
+    <script>
+      let tbody = document.getElementById("tableBody");
+      let employees = [];
+
+      const handleSubmit = (e) => {
+        e.preventDefault();
+        const { id, name, city, phone } = e.target;
+
+        employees.push({
+          id: id.value,
+          name: name.value,
+          city: city.value,
+          phone: phone.value,
+        });
+
+        render();
+        e.target.reset();
+      };
+
+      const render = () => {
+        tbody.innerHTML = "";
+
+        employees.forEach((ele, index) => {
+          let row = document.createElement("tr");
+
+          row.innerHTML = `
+                <td>${ele.id}</td>
+                <td>${ele.name}</td>
+                <td>${ele.city}</td>
+                <td>${ele.phone}</td>
+                <td>
+                    <button class="del" onclick="deleteEmployee(${index})">Delete</button>
+                </td>
+            `;
+
+          tbody.appendChild(row);
+        });
+      };
+
+      const deleteEmployee = (index) => {
+        employees.splice(index, 1);
+        render();
+      };
+    </script>
+  </body>
+</html>

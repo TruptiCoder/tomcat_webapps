@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Demo</title>
+    <style>
+        * {
+            font-family: consolas;
+        }
+
+        body {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        input {
+            margin: 10px;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        h1 {
+            color: green;
+        }
+
+        h2 {
+            color: blue;
+        }
+
+        table {
+            margin: 20px auto;
+            border-collapse: collapse;
+            width: 50%;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <h1>Hello World!</h1>
+
+    <input type="number" name="n1" id="n1" placeholder="Enter first number">
+    <input type="number" name="n2" id="n2" placeholder="Enter second number">
+    <input type="button" value="Add" onclick="addNumbers()">
+    <h2 id="result"></h2>
+
+    <h3>Employees</h3>
+    <table>
+        <thead>
+            <tr id="trhead">
+
+            </tr>
+        </thead>
+        <tbody id="tbody">
+
+        </tbody>
+    </table>
+
+    <input type="text" id="username" name="username" onblur="verifyUser(this.value)">
+
+    <script>
+        function doSum(a, b) {
+            // return promise = new Promise((resolve, reject) => {
+            //     if(+a >= 10) {
+            //         reject("Number is too large")
+            //     } else {
+            //         resolve(+a + +b);
+            //     }
+            // })
+
+            if(+a >= 10) {
+                return Promise.reject("Number is too large! Please enter a number less than or equal to 10.");
+            } else {
+                return Promise.resolve(+a + +b);
+            }
+        }
+
+        function addNumbers() {
+            let num1 = document.getElementById("n1").value;
+            let num2 = document.getElementById("n2").value;
+            doSum(num1, num2)
+            .then((sum) => {
+                document.getElementById("result").innerText = "Result: " + sum;
+            })
+            .catch((err) => {
+                document.getElementById("result").innerText = "Error: " + err;
+            });
+
+            console.log("Addition in progress...");
+        }
+    </script>
+    <!-- <script src="day3.js"></script> -->
+    <!-- <script src="asyncAwait.js"></script> -->
+    <script src="fetchDemo.js"></script>
+</body>
+</html>

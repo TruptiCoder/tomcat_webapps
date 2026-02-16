@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX Demo</title>
+    <script>
+
+        function validateForm(e) {
+            e.preventDefault();
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+            var url = `http://localhost:8080/trupti/JSDemo/verifyUser.jsp`;
+
+            const request = new XMLHttpRequest();
+            request.open("POST", url, true);
+            request.onload = function() {
+                if(this.status == 200) {
+                    document.getElementById("msg").innerHTML += this.responseText;
+                }
+            }
+            request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            request.send(`username=${username}`);
+
+            // request.setRequestHeader("Content-type", "application/json");
+            // request.send(JSON.stringify({username: username}));
+        }
+
+        function tp(e) {
+            e.preventDefault();
+            window.open("https://mail.google.com", "_blank");
+        }
+    </script>
+</head>
+<body>
+    <a href="abc.jsp" onclick="tp(event)">Go to GMAIL</a>
+    <!-- <form action="verifyUser.jsp" method="post" onsubmit="return validateForm(event)"> -->
+    <form action="" method="post" onsubmit="validateForm(event)" enctype="application/x-www-form-urlencoded">
+
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username"><span id="msg"></span><br><br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password"><br><br>
+
+        <input type="submit" value="Submit">
+
+    </form>
+</body>
+</html>

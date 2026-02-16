@@ -1,0 +1,86 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: consolas;
+    box-sizing: border-box;
+}
+
+body,
+html {
+    width: 100%;
+    height: 100%;
+}
+
+main {
+    background-color: #dbb3ff;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+    gap: 1rem;
+}
+
+#index div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 5rem;
+    gap: 2rem;
+}
+
+button {
+    padding: 1rem 2rem;
+    border-radius: .2rem;
+    background-color: white;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+}
+
+button:hover {
+    background-color: whitesmoke;
+}
+
+form {
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+    width: 500px;
+    padding: 1rem;
+    border: 2px solid black;
+    border-radius: .2rem;
+    background-color: white;
+}
+
+input {
+    height: 2rem;
+    border: 2px solid black;
+    border-radius: .2rem;
+    font-size: 1rem;
+    padding: 0 .5rem;
+}
+
+#go_back {
+    padding: .5rem 1rem;
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+table {
+    background-color: white;
+}
+
+table button {
+    padding: .2rem .5rem;
+    font-size: 1rem;
+    margin-inline: 1rem;
+}

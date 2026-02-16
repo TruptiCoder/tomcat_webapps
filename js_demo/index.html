@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript demo</title>
+
+    <style>
+        * {
+            font-family: consolas;
+        }
+        input {
+            width: 500px;
+            height: 3rem;
+            font-size: 1.5rem;
+            padding: .5rem 1rem;
+        }
+
+        body::selection {
+            background-color: #9f31ff;
+        }
+
+        .msg {
+            color: slateblue;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" name="userId" id="input" placeholder="Enter user id" oninput=changeVal(event)>
+    <h1>Entered Value is <span id="msg">...</span></h1>
+
+
+    <script>
+        let span = document.getElementById("msg");
+        const changeVal = (e) => {
+            // span.style.color = "crimson"
+            span.className = "msg"
+            span.innerText = e.target.value;
+        }
+    </script>
+    <!-- <script src="day1.js"></script> -->
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        window.onload = () => {
+            document.getElementById("startbutton").addEventListener("click", startClock);
+            document.getElementById("stopbutton").addEventListener("click", stopClock);
+        };
+
+        function startClock() {
+            t = setInterval(() => {
+                dt = new Date();
+                document.getElementById("time").innerHTML = dt.toLocaleTimeString();
+            }, 1000)
+        }
+
+        function stopClock() {
+            clearInterval(t);
+        }
+
+    </script>
+
+</head>
+<body style="font-family: consolas;">
+    <h1>Time <span id="time"></span></h1>
+    <button id="startbutton">Start clock</button>
+    <button id="stopbutton">Stop clock</button>
+
+    <br>
+    <br>
+    <script>
+        function getScore() {
+            getHttp();
+        }
+
+        setInterval(getScore, 1000)
+
+        function getHttp() {
+            let xyz = new XMLHttpRequest();
+            xyz.open("GET", "score.txt", true);
+            xyz.onreadystatechange = () => {
+                let rs = xyz.readyState;
+                if(rs == 4 && xyz.status == 200) {
+                    data = JSON.parse(xyz.responseText);
+                    // console.table(data)
+                    document.getElementById("score").innerHTML = data.score;
+                    document.getElementById("overs").innerHTML = data.overs;
+                    document.getElementById("wickets").innerHTML = data.wickets;
+                }
+            }
+            xyz.send(null);
+        }
+
+        function verifyUser(uname) {
+            let res = new XMLHttpRequest();
+            res.open("GET", "verifyuser.jsp?uname="+uname, true);
+            res.onreadystatechange = () => {
+                let rs = res.readyState;
+                if(rs == 4 && res.status == 200) {
+                    let data = res.responseText;
+                    document.getElementById("res").innerHTML = data;
+                }
+            }
+            res.send(null)
+        }
+    </script>
+
+    <input type="text" name="uname" id="uname" onblur="verifyUser(this.value)">
+    <span id="res"></span>
+    
+    <button id="getScore" onclick="getScore()">Get Score</button>
+    <h1>Score is: <span id="score">...</span></h1>
+    <h1>Overs are: <span id="overs">...</span></h1>
+    <h1>Wickets are: <span id="wickets">...</span></h1>
+
+</body>
+</html>
